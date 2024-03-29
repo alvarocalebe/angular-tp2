@@ -1,7 +1,7 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
     <mat-form-field>
-        <mat-label>Nome</mat-label>
+        <mat-label>Nome Para Cadastro</mat-label>
         <input matInput type="text" formControlName="nome">
         <mat-error *ngIf="formGroup.get('nome') 
                        && formGroup.get('nome')?.invalid
