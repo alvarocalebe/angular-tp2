@@ -1,0 +1,23 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+    <mat-form-field>
+        <mat-label>Nome Marca</mat-label>
+        <input matInput type="text" formControlName="nomeMarca">
+        <mat-error *ngIf="formGroup.get('nomeMarca') 
+                       && formGroup.get('nomeMarca')?.invalid
+                       && formGroup.get('nomeMarca')?.touched">
+            O nome da marca é obrigatorio.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Pais Origem</mat-label>
+        <input matInput type="text" formControlName="paisOrigem">
+        <mat-error *ngIf="formGroup.get('paisOrigem') 
+                       && formGroup.get('paisOrigem')?.invalid
+                       && formGroup.get('paisOrigem')?.touched">
+            o pais de origem é obrigatorio.
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit"
+        [disabled]="formGroup.invalid"> Salvar </button>
+</form>
