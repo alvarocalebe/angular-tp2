@@ -7,16 +7,28 @@ import { Marca } from '../models/marca.model';
   providedIn: 'root'
 })
 export class MarcaService {
-  private baseUrl = 'http://localhost:8080/marcas';
+  private baseUrl = 'http://localhost:8080/marca';
 
   constructor(private httpClient: HttpClient) {  }
 
-  getMarcas(): Observable<Marca[]> {
+  findAll(): Observable<Marca[]> {
     return this.httpClient.get<Marca[]>(this.baseUrl);
   }
 
-  salvar(marca: Marca): Observable<Marca> {
+  findById(idMarca: string): Observable<Marca> {
+    return this.httpClient.get<Marca>(`${this.baseUrl}/${idMarca}`);
+  }
+
+  insertMarca(marca: Marca): Observable<Marca> {
     return this.httpClient.post<Marca>(this.baseUrl, marca);
+  }
+
+  updateMarca(marca: Marca): Observable<Marca> {
+    return this.httpClient.put<Marca>(`${this.baseUrl}/${marca.id}`, marca);
+  }
+
+  delete(marca: Marca): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/${marca.id}`);
   }
 
 }
