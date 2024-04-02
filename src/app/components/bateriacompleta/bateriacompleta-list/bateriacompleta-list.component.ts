@@ -19,7 +19,7 @@ import { BateriaCompletaService } from '../../../services/bateriacompleta.servic
 })
 
 export class BateriaCompletaListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'nomeBateria', 'quantTambor', 'descricao', 'preco', 'quantidadeEstoque', 'marca', 'categoria', 'fotoProduto', 'acao'];
+  displayedColumns: string[] = ['id', 'nomeBateria', 'quantTambor', 'descricao', 'preco', 'quantidadeEstoque', 'marca', 'categoria', 'nomeImagem', 'acao'];
   bateriasCompleta: BateriaCompleta[] = [];
 
   constructor(private bateriaCompletaService: BateriaCompletaService) {

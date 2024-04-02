@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <div class="flex-container">
       <span class="toolbar-title">Controle de Baterias Completa</span>
-      <button mat-fab color="accent" routerLink="/bateriascompleta/new">
+      <button mat-fab color="accent" routerLink="/bateriasCompleta/new">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -39,10 +39,10 @@
         <th mat-header-cell *matHeaderCellDef> Quantidade Estoque </th>
         <td mat-cell *matCellDef="let element"> {{element.quantidadeEstoque}} </td>
       </ng-container>
-        <!-- Foto Produto -->
-        <ng-container matColumnDef="fotoProduto">
+        <!-- Nome Imagem  -->
+        <ng-container matColumnDef="nomeImagem">
             <th mat-header-cell *matHeaderCellDef> Foto Produto </th>
-            <td mat-cell *matCellDef="let element"> {{element.fotoProduto}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.nomeImagem}} </td>
           </ng-container>
   
       <!-- Marca Column -->
@@ -63,7 +63,7 @@
         <td mat-cell *matCellDef="let element"> 
           <button mat-icon-button 
                   color="primary"
-                  routerLink="/municipios/edit/{{element.id}}">
+                  routerLink="/bateriasCompleta/edit/{{element.id}}">
                   <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button 

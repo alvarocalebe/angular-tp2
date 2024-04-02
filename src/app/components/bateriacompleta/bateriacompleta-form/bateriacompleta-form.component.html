@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="toolbar-title">Cadastro de Município</mat-toolbar>
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Bateria Completa</mat-toolbar>
 <div class="form-container">
     <mat-card>
         <mat-card-content>
@@ -56,12 +56,12 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>Foto Produto</mat-label>
-                    <input matInput type="text" formControlName="fotoProduto">
-                    <mat-error *ngIf="formGroup.get('fotoProduto') 
-                                   && formGroup.get('fotoProduto')?.invalid
-                                   && formGroup.get('fotoProduto')?.touched">
-                        A foto do produto é obrigatoria.
+                    <mat-label>Nome Imagem</mat-label>
+                    <input matInput type="text" formControlName="nomeImagem">
+                    <mat-error *ngIf="formGroup.get('nomeImagem') 
+                                   && formGroup.get('nomeImagem')?.invalid
+                                   && formGroup.get('nomeImagem')?.touched">
+                        O nome da imagem o é obrigatorio.
                     </mat-error>
                 </mat-form-field>
 
@@ -71,22 +71,22 @@
                     <mat-select formControlName="marca">
                         @for (marca of marcas; track marca.id) {
                             <mat-option [value]="marca">
-                                {{marca.nomeMarca}}
+                                {{marca.nomeMarca}} - {{marca.paisOrigem}}
                             </mat-option>
                         }
                     </mat-select>
                 </mat-form-field>
 
-                <!-- <mat-form-field appearance="fill">
-                    <mat-label>Estado</mat-label>
-                    <mat-select formControlName="marca">
-                        @for (estado of estados; track estado.id) {
-                            <mat-option [value]="estado">
-                                {{estado.nome}}
+                <mat-form-field appearance="fill">
+                    <mat-label>Categoria</mat-label>
+                    <mat-select formControlName="categoria">
+                        @for (categoria of categorias; track categoria.id) {
+                            <mat-option [value]="categoria">
+                                {{categoria.nomeCategoria}}
                             </mat-option>
                         }
                     </mat-select>
-                </mat-form-field> -->
+                </mat-form-field>
 
 
 

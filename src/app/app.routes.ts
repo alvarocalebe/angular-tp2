@@ -5,6 +5,9 @@ import { marcaResolver } from './components/marca/resolver/marca-resolver';
 import { BateriaCompletaListComponent } from './components/bateriacompleta/bateriacompleta-list/bateriacompleta-list.component';
 import { BateriaCompletaFormComponent } from './components/bateriacompleta/bateriacompleta-form/bateriacompleta-form.component';
 import { bateriaCompletaResolver } from './components/bateriacompleta/resolver/bateriacompleta-resolver';
+import { CategoriaListComponent } from './components/categoria/categoria-list/categoria-list.component';
+import { categoriaResolver } from './components/categoria/resolver/categoria-resolver';
+import { CategoriaFormComponent } from './components/categoria/categoria-form/categoria-form.component';
 
 
 
@@ -16,6 +19,11 @@ export const routes: Routes = [
     { path: 'bateriasCompleta', component: BateriaCompletaListComponent, title: 'Lista de Municipios'},
     { path: 'bateriasCompleta/new', component: BateriaCompletaFormComponent, title: 'Nova Bateria Completa'},
     { path: 'bateriasCompleta/edit/:id', component: BateriaCompletaFormComponent, resolve: {bateriaCompleta: bateriaCompletaResolver}},
+
+    { path: 'categorias', component: CategoriaListComponent, title: 'Lista de Categorias'},
+    { path: 'categorias/new', component: CategoriaFormComponent, title: 'Nova Categoria'},
+    { path: 'categorias/edit/:id', component: CategoriaFormComponent, resolve: {categoria: categoriaResolver}},
+    
     // { path: 'bateriasCompleta/new', component: BateriaCompletaFormComponent, title: 'Novo Municipio'},
     // { path: 'bateriasCompleta/edit/:id', component: BateriaCompletaFormComponent, resolve: {municipio: municipioResolver}}, 
 

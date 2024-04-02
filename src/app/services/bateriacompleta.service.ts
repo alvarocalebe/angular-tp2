@@ -28,8 +28,10 @@ export class BateriaCompletaService {
       descricao: bateriaCompleta.descricao,
       preco: bateriaCompleta.preco,
       quantidadeEstoque: bateriaCompleta.quantidadeEstoque,
-      fotoProduto: bateriaCompleta.fotoProduto,
+      nomeImagem: bateriaCompleta.nomeImagem,
+      idCategoria: bateriaCompleta.categoria.id,
       idMarca: bateriaCompleta.marca.id
+      
     }
     return this.httpClient.post<BateriaCompleta>(this.baseUrl, data);
   }
@@ -41,8 +43,9 @@ export class BateriaCompletaService {
         descricao: bateriaCompleta.descricao,
         preco: bateriaCompleta.preco,
         quantidadeEstoque: bateriaCompleta.quantidadeEstoque,
-        fotoProduto: bateriaCompleta.fotoProduto,
-        idMarca: bateriaCompleta.marca.id
+        nomeImagem: bateriaCompleta.nomeImagem,
+        idMarca: bateriaCompleta.marca.id,
+        idCategoria: bateriaCompleta.categoria.id
     }
     return this.httpClient.put<BateriaCompleta>(`${this.baseUrl}/${bateriaCompleta.id}`, data);
   }

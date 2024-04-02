@@ -12,11 +12,10 @@ import { Marca } from '../../../models/marca.model';
 import { BateriaCompletaService } from '../../../services/bateriacompleta.service';
 import { MarcaService } from '../../../services/marca.service';
 import { BateriaCompleta } from '../../../models/bateriacompleta.model';
+import { Categoria } from '../../../models/categoria.model';
+import { CategoriaService } from '../../../services/categoria.service';
+import { forkJoin } from 'rxjs';
 
-// import { Estado } from '../../../models/estado.model';
-// import { Municipio } from '../../../models/municipio.model';
-// import { EstadoService } from '../../../services/estado.service';
-// import { MunicipioService } from '../../../services/municipio.service';
 
 @Component({
   selector: 'app-bateriacompleta-form',
@@ -31,10 +30,12 @@ export class BateriaCompletaFormComponent implements OnInit {
 
   formGroup: FormGroup;
   marcas: Marca[] = [];
+  categorias: Categoria[] = [];
 
   constructor(private formBuilder: FormBuilder,
     private bateriaCompletaService: BateriaCompletaService,
     private marcaService: MarcaService,
+    private categoriaService: CategoriaService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
 
@@ -45,46 +46,56 @@ export class BateriaCompletaFormComponent implements OnInit {
       descricao: ['', Validators.required],
       preco: ['', Validators.required],
       quantidadeEstoque: ['', Validators.required],
-      fotoProduto: ['', Validators.required],
+      nomeImagem: ['', Validators.required],
       marca: [null],
       categoria: [null]
     });
   }
   ngOnInit(): void {
-    this.marcaService.findAll().subscribe(data => {
-      this.marcas = data;
+    // Realiza ambas as chamadas dos serviços e espera que ambas sejam concluídas antes de inicializar o formulário
+    forkJoin([
+      this.marcaService.findAll(),
+      this.categoriaService.findAll()
+    ]).subscribe(([marcas, categorias]) => {
+      this.marcas = marcas;
+      this.categorias = categorias;
       this.initializeForm();
     });
   }
 
   initializeForm() {
 
-    const bateriaCompleta: BateriaCompleta = this.activatedRoute.snapshot.data['bateriacompleta'];
+    const bateriaCompleta: BateriaCompleta = this.activatedRoute.snapshot.data['bateriaCompleta'];
 
-    // selecionando o estado
+    // selecionando a marca
     const marca = this.marcas
       .find(marca => marca.id === (bateriaCompleta?.marca?.id || null)); 
 
-    this.formGroup = this.formBuilder.group({
-      id: [(bateriaCompleta && bateriaCompleta.id) ? bateriaCompleta.id : null],
-      nomeBateria: [(bateriaCompleta && bateriaCompleta.nomeBateria) ? bateriaCompleta.nomeBateria : '', Validators.required],
-      quantTambor: [(bateriaCompleta && bateriaCompleta.quantTambor) ? bateriaCompleta.quantTambor : '', Validators.required],
-      descricao: [(bateriaCompleta && bateriaCompleta.descricao) ? bateriaCompleta.descricao : '', Validators.required],
-      preco: [(bateriaCompleta && bateriaCompleta.preco) ? bateriaCompleta.preco : '', Validators.required],
-      quantidadeEstoque: [(bateriaCompleta && bateriaCompleta.quantidadeEstoque) ? bateriaCompleta.quantidadeEstoque : '', Validators.required],
-      fotoProduto: [(bateriaCompleta && bateriaCompleta.fotoProduto) ? bateriaCompleta.fotoProduto : '', Validators.required],
-      marca: [marca]
-    //   categoria: [categoria]
-    });
+      const categoria = this.categorias
+      .find(categoria => categoria.id === (bateriaCompleta?.categoria?.id || null)); 
+
+      this.formGroup = this.formBuilder.group({
+        id: [(bateriaCompleta && bateriaCompleta.id) ? bateriaCompleta.id : null],
+        nomeBateria: [(bateriaCompleta && bateriaCompleta.nomeBateria) ? bateriaCompleta.nomeBateria : '', Validators.required],
+        quantTambor: [(bateriaCompleta && bateriaCompleta.quantTambor) ? bateriaCompleta.quantTambor : '', Validators.required],
+        descricao: [(bateriaCompleta && bateriaCompleta.descricao) ? bateriaCompleta.descricao : '', Validators.required],
+        preco: [(bateriaCompleta && bateriaCompleta.preco) ? bateriaCompleta.preco : '', Validators.required],
+        quantidadeEstoque: [(bateriaCompleta && bateriaCompleta.quantidadeEstoque) ? bateriaCompleta.quantidadeEstoque : '', Validators.required],
+        nomeImagem: [(bateriaCompleta && bateriaCompleta.nomeImagem) ? bateriaCompleta.nomeImagem : '', Validators.required],
+        marca: [marca],
+        categoria: [categoria]
+      });
   }
 
   salvar() {
     if (this.formGroup.valid) {
       const bateriaCompleta = this.formGroup.value;
       if (bateriaCompleta.id ==null) {
+        console.log('Marca selecionada:', this.formGroup.value.marca);
+console.log('Categoria selecionada:', this.formGroup.value.categoria);
         this.bateriaCompletaService.insert(bateriaCompleta).subscribe({
           next: (bateriaCompletaCadastrada) => {
-            this.router.navigateByUrl('/bateriascompleta');
+            this.router.navigateByUrl('/bateriasCompleta');
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -93,7 +104,7 @@ export class BateriaCompletaFormComponent implements OnInit {
       } else {
         this.bateriaCompletaService.update(bateriaCompleta).subscribe({
           next: (bateriaCompletaAlterada) => {
-            this.router.navigateByUrl('/bateriascompleta');
+            this.router.navigateByUrl('/bateriasCompleta');
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
