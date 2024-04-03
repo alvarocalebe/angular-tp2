@@ -24,13 +24,13 @@ export class BateriaCompletaService {
   insert(bateriaCompleta: BateriaCompleta): Observable<BateriaCompleta> {
     const data = {
       nomeBateria: bateriaCompleta.nomeBateria,
-      quantTambor: bateriaCompleta.quantTambor,
+      quantidadeTambor: bateriaCompleta.quantidadeTambor,
       descricao: bateriaCompleta.descricao,
       preco: bateriaCompleta.preco,
       quantidadeEstoque: bateriaCompleta.quantidadeEstoque,
       nomeImagem: bateriaCompleta.nomeImagem,
-      idCategoria: bateriaCompleta.categoria.id,
-      idMarca: bateriaCompleta.marca.id
+      IdCategoria: bateriaCompleta.categoria.id,
+      IdMarca: bateriaCompleta.marca.id
       
     }
     return this.httpClient.post<BateriaCompleta>(this.baseUrl, data);
@@ -39,13 +39,13 @@ export class BateriaCompletaService {
   update(bateriaCompleta: BateriaCompleta): Observable<BateriaCompleta> {
     const data = {
         nomeBateria: bateriaCompleta.nomeBateria,
-        quantTambor: bateriaCompleta.quantTambor,
+        quantidadeTambor: bateriaCompleta.quantidadeTambor,
         descricao: bateriaCompleta.descricao,
         preco: bateriaCompleta.preco,
         quantidadeEstoque: bateriaCompleta.quantidadeEstoque,
         nomeImagem: bateriaCompleta.nomeImagem,
-        idMarca: bateriaCompleta.marca.id,
-        idCategoria: bateriaCompleta.categoria.id
+        IdMarca: bateriaCompleta.marca.id,
+        IdCategoria: bateriaCompleta.categoria.id
     }
     return this.httpClient.put<BateriaCompleta>(`${this.baseUrl}/${bateriaCompleta.id}`, data);
   }

@@ -14,7 +14,7 @@ import { MarcaService } from '../../../services/marca.service';
 import { BateriaCompleta } from '../../../models/bateriacompleta.model';
 import { Categoria } from '../../../models/categoria.model';
 import { CategoriaService } from '../../../services/categoria.service';
-import { forkJoin } from 'rxjs';
+
 
 
 @Component({
@@ -42,7 +42,7 @@ export class BateriaCompletaFormComponent implements OnInit {
     this.formGroup = formBuilder.group({
       id: [null],
       nomeBateria: ['', Validators.required],
-      quantTambor: ['', Validators.required],
+      quantidadeTambor: ['', Validators.required],
       descricao: ['', Validators.required],
       preco: ['', Validators.required],
       quantidadeEstoque: ['', Validators.required],
@@ -52,21 +52,21 @@ export class BateriaCompletaFormComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    // Realiza ambas as chamadas dos serviços e espera que ambas sejam concluídas antes de inicializar o formulário
-    forkJoin([
-      this.marcaService.findAll(),
-      this.categoriaService.findAll()
-    ]).subscribe(([marcas, categorias]) => {
+    this.marcaService.findAll().subscribe(marcas => {
       this.marcas = marcas;
-      this.categorias = categorias;
-      this.initializeForm();
     });
+
+    this.categoriaService.findAll().subscribe(categorias => {
+        this.categorias = categorias;
+
+        this.initializeForm();
+      });
   }
 
   initializeForm() {
 
     const bateriaCompleta: BateriaCompleta = this.activatedRoute.snapshot.data['bateriaCompleta'];
-
+    console.log(bateriaCompleta)
     // selecionando a marca
     const marca = this.marcas
       .find(marca => marca.id === (bateriaCompleta?.marca?.id || null)); 
@@ -77,7 +77,7 @@ export class BateriaCompletaFormComponent implements OnInit {
       this.formGroup = this.formBuilder.group({
         id: [(bateriaCompleta && bateriaCompleta.id) ? bateriaCompleta.id : null],
         nomeBateria: [(bateriaCompleta && bateriaCompleta.nomeBateria) ? bateriaCompleta.nomeBateria : '', Validators.required],
-        quantTambor: [(bateriaCompleta && bateriaCompleta.quantTambor) ? bateriaCompleta.quantTambor : '', Validators.required],
+        quantidadeTambor: [(bateriaCompleta && bateriaCompleta.quantidadeTambor) ? bateriaCompleta.quantidadeTambor : '', Validators.required],
         descricao: [(bateriaCompleta && bateriaCompleta.descricao) ? bateriaCompleta.descricao : '', Validators.required],
         preco: [(bateriaCompleta && bateriaCompleta.preco) ? bateriaCompleta.preco : '', Validators.required],
         quantidadeEstoque: [(bateriaCompleta && bateriaCompleta.quantidadeEstoque) ? bateriaCompleta.quantidadeEstoque : '', Validators.required],
@@ -90,9 +90,11 @@ export class BateriaCompletaFormComponent implements OnInit {
   salvar() {
     if (this.formGroup.valid) {
       const bateriaCompleta = this.formGroup.value;
+      console.log(bateriaCompleta)
       if (bateriaCompleta.id ==null) {
         console.log('Marca selecionada:', this.formGroup.value.marca);
-console.log('Categoria selecionada:', this.formGroup.value.categoria);
+        console.log('Categoria selecionada:', this.formGroup.value.categoria);
+
         this.bateriaCompletaService.insert(bateriaCompleta).subscribe({
           next: (bateriaCompletaCadastrada) => {
             this.router.navigateByUrl('/bateriasCompleta');
@@ -101,7 +103,7 @@ console.log('Categoria selecionada:', this.formGroup.value.categoria);
             console.log('Erro ao Incluir' + JSON.stringify(err));
           }
         });
-      } else {
+      } else {  
         this.bateriaCompletaService.update(bateriaCompleta).subscribe({
           next: (bateriaCompletaAlterada) => {
             this.router.navigateByUrl('/bateriasCompleta');

@@ -9,5 +9,5 @@ export class Acessorio {
     quantidadeEstoque!: number;
     marca!: Marca;
     categoria!: Categoria;
-    fotoProduto!: string;
+    nomeImagem!: string;
 }

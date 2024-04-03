@@ -17,10 +17,10 @@
                 
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Quantidade Tambor</mat-label>
-                    <input matInput type="text" formControlName="quantTambor">
-                    <mat-error *ngIf="formGroup.get('quantTambor') 
-                                   && formGroup.get('quantTambor')?.invalid
-                                   && formGroup.get('quantTambor')?.touched">
+                    <input matInput type="text" formControlName="quantidadeTambor">
+                    <mat-error *ngIf="formGroup.get('quantidadeTambor') 
+                                   && formGroup.get('quantidadeTambor')?.invalid
+                                   && formGroup.get('quantidadeTambor')?.touched">
                         A quantidade de Tambores é obrigatorio.
                     </mat-error>
                 </mat-form-field>
@@ -107,7 +107,7 @@
                 Excluir 
             </button>
             <button mat-raised-button  
-                    routerLink="/bateriascompleta"> 
+                    routerLink="/bateriasCompleta"> 
                 Cancelar 
             </button>
 
