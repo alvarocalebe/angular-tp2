@@ -8,12 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { TamborAvulso } from '../../../models/tamboravulso.model';
 import { TamborAvulsoService } from '../../../services/tamboravulso.service';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
 @Component({
   selector: 'app-tamboravulso-list',
   standalone: true,
   imports: [NgFor, MatTableModule, MatToolbarModule, MatIconModule
-  , MatButtonModule, RouterModule],
+  , MatButtonModule, RouterModule, MatMenuModule, MatSidenavModule],
   templateUrl: './tamboravulso-list.component.html',
   styleUrl: './tamboravulso-list.component.css'
 })
@@ -21,6 +22,7 @@ import { TamborAvulsoService } from '../../../services/tamboravulso.service';
 export class TamborAvulsoListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nomeTambor', 'descricao', 'preco', 'quantidadeEstoque', 'marca', 'categoria', 'nomeImagem', 'acao'];
   tamboresAvulso: TamborAvulso[] = [];
+
 
   constructor(private tamborAvulsoService: TamborAvulsoService) {
 
@@ -31,5 +33,6 @@ export class TamborAvulsoListComponent implements OnInit {
       this.tamboresAvulso = data;
     })
   }
+  
 
 }
