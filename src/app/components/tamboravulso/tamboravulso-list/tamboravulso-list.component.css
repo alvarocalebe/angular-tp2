@@ -1,0 +1,57 @@
+/* Utilize variáveis CSS para manter a consistência e facilitar alterações futuras */
+:root {
+    --border-color: currentColor ;
+    --column-width-large: 60%;
+    --column-width-small: 40%;
+  }
+  
+  .toolbar-title {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .flex-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .mat-column-id {
+    width: 5em;
+    border-right: 1px solid var(--border-color);
+    padding-right: 24px;
+    text-align: center;
+  }
+  
+  /* Simplifique as classes que compartilham o mesmo valor de largura */
+  .mat-column-nomeTambor,
+  .mat-column-descricao,
+  .mat-column-preco,
+  .mat-column-quantidadeEstoque,
+  .mat-column-nomeImagem {
+    width: var(--column-width-large);
+  }
+  
+  .mat-column-marca,
+  .mat-column-categoria {
+    width: var(--column-width-small);
+  }
+  
+  .mat-column-acao {
+    text-align: center;
+    min-width: 10em;
+  }
+  
+  /* Considere adicionar media queries para responsividade */
+  @media (max-width: 768px) {
+    .mat-column-id,
+    .mat-column-nomeTambor,
+    .mat-column-descricao,
+    .mat-column-preco,
+    .mat-column-quantidadeEstoque,
+    .mat-column-nomeImagem,
+    .mat-column-marca,
+    .mat-column-categoria {
+      width: 100%; /* Ajuste a largura para dispositivos menores */
+    }
+  }

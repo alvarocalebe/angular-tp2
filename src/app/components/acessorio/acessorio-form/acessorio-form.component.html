@@ -14,7 +14,7 @@
                         O nome do acessorio é obrigatorio.
                     </mat-error>
                 </mat-form-field>
-            
+
 
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Descricao</mat-label>
@@ -61,9 +61,9 @@
                     <mat-label>Marca</mat-label>
                     <mat-select formControlName="marca">
                         @for (marca of marcas; track marca.id) {
-                            <mat-option [value]="marca">
-                                {{marca.nomeMarca}} - {{marca.paisOrigem}}
-                            </mat-option>
+                        <mat-option [value]="marca">
+                            {{marca.nomeMarca}} - {{marca.paisOrigem}}
+                        </mat-option>
                         }
                     </mat-select>
                 </mat-form-field>
@@ -72,34 +72,27 @@
                     <mat-label>Categoria</mat-label>
                     <mat-select formControlName="categoria">
                         @for (categoria of categorias; track categoria.id) {
-                            <mat-option [value]="categoria">
-                                {{categoria.nomeCategoria}}
-                            </mat-option>
+                        <mat-option [value]="categoria">
+                            {{categoria.nomeCategoria}}
+                        </mat-option>
                         }
                     </mat-select>
                 </mat-form-field>
 
 
-s
+
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button 
-                    color="primary" 
-                    (click)="salvar()"
-                    [disabled]="formGroup.invalid"> 
-                Salvar 
+            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+                Salvar
             </button>
-            <button mat-raised-button 
-                    *ngIf="formGroup?.get('id')?.value"
-                    color="warn" 
-                    (click)="excluir()"
-                    [disabled]="formGroup.invalid"> 
-                Excluir 
+            <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()"
+                [disabled]="formGroup.invalid">
+                Excluir
             </button>
-            <button mat-raised-button  
-                    routerLink="/acessorios"> 
-                Cancelar 
+            <button mat-raised-button routerLink="/acessorios">
+                Cancelar
             </button>
 
         </mat-card-actions>

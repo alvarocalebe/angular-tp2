@@ -12,7 +12,6 @@ import { Marca } from '../../../models/marca.model';
 import { MarcaService } from '../../../services/marca.service';
 import { Categoria } from '../../../models/categoria.model';
 import { CategoriaService } from '../../../services/categoria.service';
-import { forkJoin } from 'rxjs';
 import { AcessorioService } from '../../../services/acessorio.service';
 import { Acessorio } from '../../../models/acessorio.model';
 
@@ -21,7 +20,7 @@ import { Acessorio } from '../../../models/acessorio.model';
   selector: 'app-acessorio-form',
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, 
+    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
     RouterModule, MatSelectModule],
   templateUrl: './acessorio-form.component.html',
   styleUrl: './acessorio-form.component.css'
@@ -51,13 +50,13 @@ export class AcessorioFormComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    // Realiza ambas as chamadas dos serviços e espera que ambas sejam concluídas antes de inicializar o formulário
-    forkJoin([
-      this.marcaService.findAll(),
-      this.categoriaService.findAll()
-    ]).subscribe(([marcas, categorias]) => {
+    this.marcaService.findAll().subscribe(marcas => {
       this.marcas = marcas;
+    });
+
+    this.categoriaService.findAll().subscribe(categorias => {
       this.categorias = categorias;
+
       this.initializeForm();
     });
   }
@@ -68,29 +67,29 @@ export class AcessorioFormComponent implements OnInit {
 
     // selecionando a marca
     const marca = this.marcas
-      .find(marca => marca.id === (acessorio?.marca?.id || null)); 
+      .find(marca => marca.id === (acessorio?.marca?.id || null));
 
-      const categoria = this.categorias
-      .find(categoria => categoria.id === (acessorio?.categoria?.id || null)); 
+    const categoria = this.categorias
+      .find(categoria => categoria.id === (acessorio?.categoria?.id || null));
 
-      this.formGroup = this.formBuilder.group({
-        id: [(acessorio && acessorio.id) ? acessorio.id : null],
-        nomeAcessorio: [(acessorio && acessorio.nomeAcessorio) ? acessorio.nomeAcessorio : '', Validators.required],
-        descricao: [(acessorio && acessorio.descricao) ? acessorio.descricao : '', Validators.required],
-        preco: [(acessorio && acessorio.preco) ? acessorio.preco : '', Validators.required],
-        quantidadeEstoque: [(acessorio && acessorio.quantidadeEstoque) ? acessorio.quantidadeEstoque : '', Validators.required],
-        nomeImagem: [(acessorio && acessorio.nomeImagem) ? acessorio.nomeImagem : '', Validators.required],
-        marca: [marca],
-        categoria: [categoria]
-      });
+    this.formGroup = this.formBuilder.group({
+      id: [(acessorio && acessorio.id) ? acessorio.id : null],
+      nomeAcessorio: [(acessorio && acessorio.nomeAcessorio) ? acessorio.nomeAcessorio : '', Validators.required],
+      descricao: [(acessorio && acessorio.descricao) ? acessorio.descricao : '', Validators.required],
+      preco: [(acessorio && acessorio.preco) ? acessorio.preco : '', Validators.required],
+      quantidadeEstoque: [(acessorio && acessorio.quantidadeEstoque) ? acessorio.quantidadeEstoque : '', Validators.required],
+      nomeImagem: [(acessorio && acessorio.nomeImagem) ? acessorio.nomeImagem : '', Validators.required],
+      marca: [marca],
+      categoria: [categoria]
+    });
   }
 
   salvar() {
     if (this.formGroup.valid) {
       const acessorio = this.formGroup.value;
-      if (acessorio.id ==null) {
+      if (acessorio.id == null) {
         console.log('Marca selecionada:', this.formGroup.value.marca);
-console.log('Categoria selecionada:', this.formGroup.value.categoria);
+        console.log('Categoria selecionada:', this.formGroup.value.categoria);
         this.acessorioService.insert(acessorio).subscribe({
           next: (acessorioCadastrado) => {
             this.router.navigateByUrl('/acessorios');

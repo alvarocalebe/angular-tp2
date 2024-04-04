@@ -9,5 +9,5 @@ export class TamborAvulso {
     quantidadeEstoque!: number;
     marca!: Marca;
     categoria!: Categoria;
-    fotoProduto!: string;
+    nomeImagem!: string;
 }

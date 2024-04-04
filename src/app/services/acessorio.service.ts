@@ -29,8 +29,8 @@ export class AcessorioService {
       preco: acessorio.preco,
       quantidadeEstoque: acessorio.quantidadeEstoque,
       nomeImagem: acessorio.nomeImagem,
-      idCategoria: acessorio.categoria.id,
-      idMarca: acessorio.marca.id
+      IdCategoria: acessorio.categoria.id,
+      IdMarca: acessorio.marca.id
       
     }
     return this.httpClient.post<Acessorio>(this.baseUrl, data);
@@ -43,8 +43,8 @@ export class AcessorioService {
         preco: acessorio.preco,
         quantidadeEstoque: acessorio.quantidadeEstoque,
         nomeImagem: acessorio.nomeImagem,
-        idMarca: acessorio.marca.id,
-        idCategoria: acessorio.categoria.id
+        IdMarca: acessorio.marca.id,
+        IdCategoria: acessorio.categoria.id
     }
     return this.httpClient.put<Acessorio>(`${this.baseUrl}/${acessorio.id}`, data);
   }
