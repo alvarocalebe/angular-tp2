@@ -9,12 +9,12 @@ import { RouterModule } from '@angular/router';
 import { TamborAvulso } from '../../../models/tamboravulso.model';
 import { TamborAvulsoService } from '../../../services/tamboravulso.service';
 import {MatMenuModule} from '@angular/material/menu';
-import {MatSidenavModule} from '@angular/material/sidenav';
+
 @Component({
   selector: 'app-tamboravulso-list',
   standalone: true,
   imports: [NgFor, MatTableModule, MatToolbarModule, MatIconModule
-  , MatButtonModule, RouterModule, MatMenuModule, MatSidenavModule],
+  , MatButtonModule, RouterModule, MatMenuModule],
   templateUrl: './tamboravulso-list.component.html',
   styleUrl: './tamboravulso-list.component.css'
 })

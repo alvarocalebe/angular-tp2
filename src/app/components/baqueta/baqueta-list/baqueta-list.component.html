@@ -1,7 +1,37 @@
 <mat-toolbar color="primary">
     <div class="flex-container">
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/bateriasCompleta">
+          <span>Bateria Completa</span>
+        </button>
+        <button mat-menu-item routerLink="/tamboresAvulso">
+  
+          <span>Tambor Avulso</span>
+        </button>
+        <button mat-menu-item routerLink="/categorias">
+  
+          <span>Categoria</span>
+        </button>
+        <button mat-menu-item routerLink="/acessorios">
+  
+          <span>Acessório</span>
+        </button>
+        <button mat-menu-item routerLink="/marcas">
+  
+          <span>Marca</span>
+        </button>
+        <button mat-menu-item routerLink="/baquetas">
+  
+          <span>Baqueta</span>
+        </button>
+      </mat-menu>
+
       <span class="toolbar-title">Controle de Baquetas</span>
-      <button mat-fab color="accent" routerLink="/baquetas/new">
+      <button mat-fab color="black" routerLink="/baquetas/new">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -11,7 +41,7 @@
   
       <!-- Position Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <th mat-header-cell *matHeaderCellDef> Id </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
       <!-- Nome Baqueta Column -->
@@ -27,7 +57,7 @@
         <!-- Preco Column -->
         <ng-container matColumnDef="preco">
             <th mat-header-cell *matHeaderCellDef> Preco </th>
-            <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+            <td mat-cell *matCellDef="let element"> R$ {{element.preco}} </td>
           </ng-container>
             <!-- Quantidade Column -->
       <ng-container matColumnDef="quantidadeEstoque">
@@ -57,14 +87,11 @@
         <th mat-header-cell *matHeaderCellDef> Ação </th>
         <td mat-cell *matCellDef="let element"> 
           <button mat-icon-button 
-                  color="primary"
+                  
                   routerLink="/baquetas/edit/{{element.id}}">
                   <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button 
-                  color="warn">
-                  <mat-icon>delete</mat-icon>
-          </button>        
+              
         </td>
       </ng-container>
   

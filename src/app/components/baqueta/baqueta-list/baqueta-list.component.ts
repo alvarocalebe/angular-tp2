@@ -8,13 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Baqueta } from '../../../models/baqueta.model';
 import { BaquetaService } from '../../../services/baqueta.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @Component({
   selector: 'app-baqueta-list',
   standalone: true,
   imports: [NgFor, MatTableModule, MatToolbarModule, MatIconModule
-  , MatButtonModule, RouterModule],
+  , MatButtonModule, RouterModule, MatMenuModule],
   templateUrl: './baqueta-list.component.html',
   styleUrl: './baqueta-list.component.css'
 })

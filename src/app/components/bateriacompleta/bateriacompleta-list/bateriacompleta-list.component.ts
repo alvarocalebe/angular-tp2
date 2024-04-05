@@ -8,12 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { BateriaCompleta } from '../../../models/bateriacompleta.model';
 import { BateriaCompletaService } from '../../../services/bateriacompleta.service';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @Component({
   selector: 'app-bateriacompleta-list',
   standalone: true,
   imports: [NgFor, MatTableModule, MatToolbarModule, MatIconModule
-  , MatButtonModule, RouterModule],
+  , MatButtonModule, RouterModule, MatMenuModule],
   templateUrl: './bateriacompleta-list.component.html',
   styleUrl: './bateriacompleta-list.component.css'
 })

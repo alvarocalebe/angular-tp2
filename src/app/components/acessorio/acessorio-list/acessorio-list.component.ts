@@ -8,13 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Acessorio } from '../../../models/acessorio.model';
 import { AcessorioService } from '../../../services/acessorio.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @Component({
   selector: 'app-acessorio-list',
   standalone: true,
   imports: [NgFor, MatTableModule, MatToolbarModule, MatIconModule
-  , MatButtonModule, RouterModule],
+  , MatButtonModule, RouterModule, MatMenuModule],
   templateUrl: './acessorio-list.component.html',
   styleUrl: './acessorio-list.component.css'
 })

@@ -8,12 +8,35 @@
 .toolbar-title {
   flex: 1;
   text-align: center;
+ 
 }
 
 .flex-container {
   display: flex;
   align-items: center;
   width: 100%;
+
+}
+
+mat-toolbar{
+  background-color: black;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+body{
+  background-color: white;
+}
+
+th,td   {
+  border: 1px solid black;
+  font-family: "Montserrat", sans-serif;
+}
+
+
+table{
+  background-color: #ffffff;
+  border: 2px solid black;
 }
 
 .mat-column-id {
@@ -31,6 +54,8 @@
 .mat-column-nomeImagem {
   width: var(--column-width-large);
 }
+
+
 
 .mat-column-quantidadeEstoque {
   width: var(--column-width-large);

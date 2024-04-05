@@ -13,6 +13,25 @@ mat-card {
     margin: 2rem auto;
 }
 
+mat-toolbar{
+    background-color: black;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+  
+  }
+  
+  body{
+    background-color: white;
+  }
+  
+
+  
+  mat-label,input{
+    font-family: "Montserrat", sans-serif;
+  }
+
+
+
 mat-card-actions {
     display: flex;
     justify-content: flex-end;

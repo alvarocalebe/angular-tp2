@@ -122,7 +122,7 @@ export class BateriaCompletaFormComponent implements OnInit {
       if (bateriaCompleta.id != null) {
         this.bateriaCompletaService.delete(bateriaCompleta).subscribe({
           next: () => {
-            this.router.navigateByUrl('/bateriascompleta');
+            this.router.navigateByUrl('/bateriasCompleta');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

@@ -7,12 +7,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 @Component({
   selector: 'app-marca-list',
   standalone: true,
   imports: [NgFor, MatTableModule, MatToolbarModule, MatIconModule
-    , MatButtonModule, RouterModule],
+    , MatButtonModule, RouterModule, MatMenuModule],
   templateUrl: './marca-list.component.html',
   styleUrl: './marca-list.component.css'
 })
